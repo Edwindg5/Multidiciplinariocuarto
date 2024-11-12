@@ -1,0 +1,64 @@
+.renta-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.product-view .product-image img {
+  width: 300px;
+  height: auto;
+}
+
+.product-info {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product-info h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 24px;
+  color: #1a73e8;
+  font-weight: bold;
+}
+
+.price span {
+  font-size: 16px;
+  color: #666;
+}
+
+.product-description {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.pickup-info {
+  font-weight: bold;
+  color: #1a73e8;
+}
+
+.pickup-select {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.loan-button {
+  background-color: #1a73e8;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
