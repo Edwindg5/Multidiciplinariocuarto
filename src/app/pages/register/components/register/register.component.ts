@@ -1,38 +1,61 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../../auth/auth.service';
+import {FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor(private router: Router) {}
+  formData = {
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    telefono: '',
+    rol: 'USER' // Rol predeterminado
+  };
 
-  // Método para redirigir al formulario de inicio de sesión
-  navigateToLogin() {
-    this.router.navigate(['/login']);
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  // Método para regresar a la vista anterior
-  goBack() {
-    this.router.navigate(['../']);
-  }
+  onRegisterClick(): void {
+    const { username, email, password, confirmPassword, telefono, rol } = this.formData;
 
-  onSubmit() {
+    if (password !== confirmPassword) {
+      alert('Las contraseñas no coinciden.');
+      return;
+    }
+
     const userData = {
-      username: (document.querySelector('input[name="username"]') as HTMLInputElement).value,
-      email: (document.querySelector('input[name="email"]') as HTMLInputElement).value,
-      password: (document.querySelector('input[name="password"]') as HTMLInputElement).value
+      nombre: username,
+      correo_electronico: email,
+      contrasena: password,
+      telefono: telefono,
+      rol: rol
     };
 
-    // Guardar los datos en el localStorage
-    localStorage.setItem('user', JSON.stringify(userData));
+    this.authService.register(userData).subscribe(
+      (response) => {
+        alert('Registro exitoso');
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.error('Error al registrar usuario:', error);
+        alert(error.error?.detail || 'Error al registrar usuario');
+      }
+    );
+  }
 
-    // Mostrar alerta de registro exitoso sin redirigir automáticamente
-    alert('Registro exitoso. Ahora puedes iniciar sesión manualmente.');
+  goBack(): void {
+    this.router.navigate(['/']);
+  }
+
+  navigateToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

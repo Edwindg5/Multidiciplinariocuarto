@@ -13,15 +13,12 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    if (this.authService.isLoggedIn()) {
-      return true;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const token = this.authService.getToken();
+    if (token) {
+      return true; // Permitir acceso
     } else {
-      // Redirige al usuario a la página de login si no está autenticado
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']); // Redirigir al login
       return false;
     }
   }

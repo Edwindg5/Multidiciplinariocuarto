@@ -1,21 +1,47 @@
 <div class="login-container">
+  <!-- Panel Izquierdo con Imagen -->
   <div class="left-panel">
-    <img src="assets/logologin.png" alt="Illustration">
+    <img src="assets/logologin.png" alt="Ilustración" />
   </div>
 
+  <!-- Panel Derecho con el Formulario de Inicio de Sesión -->
   <div class="right-panel">
     <div class="logo">
-      <img src="assets/logooriginal.png" alt="Trade It Logo">
+      <img src="assets/logooriginal.png" alt="Trade It Logo" />
     </div>
-    <h2>Welcome</h2>
+    <h2>Bienvenido</h2>
 
-    <div class="form-group">
-      <input type="text" placeholder="Nombre" name="username" [(ngModel)]="username" required />
-    </div>
-    <div class="form-group">
-      <input type="password" placeholder="Contraseña" name="password" [(ngModel)]="password" required />
-    </div>
-    <button (click)="onLoginClick()" class="login-button">Ingresar</button>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Nombre"
+          name="username"
+          [(ngModel)]="formData.username"
+          #username="ngModel"
+          required
+        />
+        <div *ngIf="username.invalid && username.touched" class="error">
+          El nombre de usuario es obligatorio.
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Contraseña"
+          name="password"
+          [(ngModel)]="formData.password"
+          #password="ngModel"
+          required
+        />
+        <div *ngIf="password.invalid && password.touched" class="error">
+          La contraseña es obligatoria.
+        </div>
+      </div>
+      <button type="submit" class="login-button" [disabled]="loginForm.invalid">
+        Ingresar
+      </button>
+    </form>
 
     <p class="register-link">
       ¿No tienes cuenta?

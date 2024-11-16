@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class HeaderComponent {
   menuVisible = false;
@@ -19,11 +19,10 @@ export class HeaderComponent {
   }
 
   navigateToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']); // Navega a la vista de login
   }
 
   navigateTo(route: string) {
-    this.router.navigate([`/${route}`]);
+    this.router.navigate([`/${route}`]); // Navega a otras rutas
   }
-
 }

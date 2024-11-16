@@ -1,6 +1,11 @@
 <header class="main-header">
   <div class="left-side">
-    <img src="assets/logoproyect.png" alt="Logoproyect" class="logoproyect" (click)="navigateTo('home')">
+    <img
+      src="assets/logoproyect.png"
+      alt="Logoproyect"
+      class="logoproyect"
+      (click)="navigateTo('home')"
+    />
     <button class="menu-icon" (click)="toggleMenu()">☰</button>
   </div>
   <div class="right-side">
@@ -9,20 +14,13 @@
       <button (click)="navigateTo('vende')">Vende</button>
       <button (click)="navigateTo('renta')">Renta</button>
       <button (click)="navigateTo('intercambia')">Intercambio</button>
-      <input type="text" placeholder="Buscar" class="search-bar">
-      <img src="assets/usuario.png" alt="Usuario" class="user-icon" (click)="navigateToLogin()">
+      <input type="text" placeholder="Buscar" class="search-bar" />
+      <img
+        src="assets/usuario.png"
+        alt="Usuario"
+        class="user-icon"
+        (click)="navigateToLogin()"
+      />
     </nav>
   </div>
-
-  <!-- Menú de categorías -->
-  <nav *ngIf="menuVisible" class="categories-menu">
-    <ul>
-      <li (click)="navigateTo('electronica')">Electrónica</li>
-      <li (click)="navigateTo('material-estudio')">Material de Estudio</li>
-      <li (click)="navigateTo('herramientas')">Herramientas</li>
-      <li (click)="navigateTo('accesorios')">Accesorios</li>
-      <li (click)="navigateTo('componentes-electronicos')">Componentes Electrónicos</li>
-      <li (click)="navigateTo('todos-los-productos')">Todos los Productos</li>
-    </ul>
-  </nav>
 </header>
